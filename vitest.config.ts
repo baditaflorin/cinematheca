@@ -1,0 +1,20 @@
+import { mergeConfig } from "vite";
+import { defineConfig } from "vitest/config";
+import viteConfig from "./vite.config";
+
+export default mergeConfig(
+  viteConfig,
+  defineConfig({
+    test: {
+      environment: "jsdom",
+      globals: true,
+      include: ["src/**/*.test.ts", "src/**/*.test.tsx"],
+      setupFiles: ["src/test/setup.ts"],
+      coverage: {
+        provider: "v8",
+        reporter: ["text", "lcov"],
+        include: ["src/features/**/*.ts", "src/shared/**/*.ts"]
+      }
+    }
+  })
+);

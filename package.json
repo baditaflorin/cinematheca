@@ -1,0 +1,61 @@
+{
+  "name": "cinematheca",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Browser-based post-production toolkit for indie filmmakers: subtitles, loudness, color, restoration, and delivery exports.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/baditaflorin/cinematheca.git"
+  },
+  "homepage": "https://baditaflorin.github.io/cinematheca/",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "prebuild": "node scripts/write-build-info.mjs",
+    "build": "tsc -b && vite build && node scripts/finalize-pages.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "lint": "eslint . --max-warnings 0",
+    "fmt": "prettier --write .",
+    "fmt:check": "prettier --check .",
+    "typecheck": "tsc -b --pretty false",
+    "pages:preview": "vite preview --host 127.0.0.1 --outDir docs",
+    "smoke": "bash scripts/smoke.sh",
+    "data": "node scripts/mode-a-data.js"
+  },
+  "dependencies": {
+    "@ffmpeg/ffmpeg": "^0.12.15",
+    "@ffmpeg/util": "^0.12.2",
+    "@tanstack/react-query": "^5.90.7",
+    "comlink": "^4.4.2",
+    "fflate": "^0.8.2",
+    "idb": "^8.0.3",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@playwright/test": "^1.56.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@types/node": "^22.19.1",
+    "@types/react": "^18.3.27",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "@vitest/coverage-v8": "^2.1.9",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "jsdom": "^25.0.1",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.3",
+    "vite": "^5.4.21",
+    "vite-plugin-pwa": "^0.21.2",
+    "vitest": "^2.1.9"
+  }
+}
