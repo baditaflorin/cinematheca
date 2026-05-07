@@ -23,7 +23,7 @@ make pages-preview
 
 Open:
 
-http://127.0.0.1:4173/cinematheca/
+http://127.0.0.1:4731/cinematheca/
 
 ## Common Issues
 

@@ -9,7 +9,7 @@ export default defineConfig({
   fullyParallel: true,
   reporter: "list",
   use: {
-    baseURL: "http://127.0.0.1:4173/cinematheca/",
+    baseURL: "http://127.0.0.1:4731/cinematheca/",
     trace: "retain-on-failure"
   },
   projects: [
@@ -19,8 +19,8 @@ export default defineConfig({
     }
   ],
   webServer: {
-    command: "npx vite preview --host 127.0.0.1 --port 4173 --strictPort --outDir docs",
-    url: "http://127.0.0.1:4173/cinematheca/",
+    command: "npx vite preview --host 127.0.0.1 --port 4731 --strictPort --outDir docs",
+    url: "http://127.0.0.1:4731/cinematheca/",
     reuseExistingServer: !process.env.CI,
     timeout: 60_000
   }

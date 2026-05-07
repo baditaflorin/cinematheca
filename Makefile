@@ -46,7 +46,7 @@ fmt:
 	npm run fmt
 
 pages-preview:
-	npx vite preview --host 127.0.0.1 --port 4173 --outDir docs
+	npx vite preview --host 127.0.0.1 --port 4731 --strictPort --outDir docs
 
 hooks-pre-commit:
 	.githooks/pre-commit
