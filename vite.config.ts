@@ -30,6 +30,7 @@ export default defineConfig({
         ]
       },
       workbox: {
+        sourcemap: false,
         globPatterns: ["**/*.{js,css,html,svg,json,webmanifest}"],
         navigateFallback: `${base}index.html`
       }
@@ -38,7 +39,7 @@ export default defineConfig({
   build: {
     outDir: "docs",
     emptyOutDir: false,
-    sourcemap: true,
+    sourcemap: false,
     rollupOptions: {
       output: {
         manualChunks(id) {

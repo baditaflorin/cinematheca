@@ -1,4 +1,4 @@
-import { mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -14,14 +14,17 @@ mkdirSync(docsDir, { recursive: true });
 for (const entry of [
   "assets",
   "sw.js",
-  "workbox-*.js",
+  "sw.js.map",
   "registerSW.js",
   "manifest.webmanifest"
 ]) {
-  if (entry.includes("*")) {
-    continue;
-  }
   rmSync(join(docsDir, entry), { recursive: true, force: true });
+}
+
+for (const entry of readdirSync(docsDir)) {
+  if (/^workbox-.*\.js(\.map)?$/.test(entry)) {
+    rmSync(join(docsDir, entry), { force: true });
+  }
 }
 
 const info = {
