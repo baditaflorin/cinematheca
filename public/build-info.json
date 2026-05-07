@@ -1,9 +1,9 @@
 {
   "version": "0.1.0",
-  "commit": "6dc4c6c603a0",
-  "fullCommit": "6dc4c6c603a0488adbbc9671e4343b1097968781",
+  "commit": "live-main",
+  "fullCommit": "live-main",
   "branch": "main",
-  "builtAt": "2026-05-07T22:54:16.481Z",
+  "builtAt": "deterministic-pages-build",
   "repositoryUrl": "https://github.com/baditaflorin/cinematheca",
   "paypalUrl": "https://www.paypal.com/paypalme/florinbadita",
   "pagesUrl": "https://baditaflorin.github.io/cinematheca/"
