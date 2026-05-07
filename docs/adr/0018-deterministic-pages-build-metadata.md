@@ -10,13 +10,13 @@ The pre-push hook runs `make build`, and the built `docs/` directory is tracked 
 
 ## Decision
 
-Keep `/build-info.json` deterministic. It contains the app version and public project URLs. The live page displays the current `main` commit by fetching GitHub's public commits API:
+Keep `/build-info.json` deterministic. It contains the app version, a pinned release-commit fallback, and public project URLs. The live page first tries to display the current `main` commit by fetching GitHub's public commits API:
 
 https://api.github.com/repos/baditaflorin/cinematheca/commits/main
 
 ## Consequences
 
-Local hooks are idempotent and do not dirty the working tree. The app still shows a real commit on GitHub Pages when the public API is reachable, and falls back to deterministic static metadata when it is not.
+Local hooks are idempotent and do not dirty the working tree. The app still shows a real commit on GitHub Pages when the public API is reachable, and falls back to the pinned release commit when it is not.
 
 ## Alternatives Considered
 

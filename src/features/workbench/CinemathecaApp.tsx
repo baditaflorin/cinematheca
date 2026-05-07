@@ -122,6 +122,12 @@ export function CinemathecaApp() {
     deliveryPresets[0];
   const effectiveMaster = master ?? createFallbackMetadata();
   const plannedSubtitleCount = selectedLanguages.length * 3;
+  const commitLabel = liveCommit.data?.shortSha ?? buildInfo.data?.commit ?? "loading";
+  const commitFreshness = liveCommit.data
+    ? formatRelativeDate(liveCommit.data.committedAt)
+    : liveCommit.isError
+      ? "static fallback"
+      : "checking GitHub";
 
   useEffect(() => {
     saveProjectPreferences(preferences);
@@ -266,16 +272,9 @@ export function CinemathecaApp() {
       <section className="version-strip" aria-label="Build version">
         <span>Version {buildInfo.data?.version ?? APP_VERSION}</span>
         <span>
-          Build commit{" "}
-          <code>
-            {liveCommit.data?.shortSha ?? buildInfo.data?.commit ?? "loading"}
-          </code>
+          Build commit <code>{commitLabel}</code>
         </span>
-        <span>
-          {liveCommit.data
-            ? formatRelativeDate(liveCommit.data.committedAt)
-            : "checking GitHub"}
-        </span>
+        <span>{commitFreshness}</span>
       </section>
 
       {toast ? (

@@ -24,7 +24,7 @@ Yes. In hindsight, Mode A was the right choice for v1. The useful core is packag
 
 - The GitHub Pages REST API required a nested JSON body for the source configuration.
 - Prettier tried to format generated Pages assets until `.prettierignore` excluded them.
-- Dynamic build timestamps dirtied tracked Pages output during pre-push, so build metadata became deterministic and the live commit display moved to GitHub's public API.
+- Dynamic build timestamps dirtied tracked Pages output during pre-push, so build metadata became deterministic and the live commit display uses GitHub's public API with a pinned release-commit fallback.
 
 ## Accepted Tech Debt
 

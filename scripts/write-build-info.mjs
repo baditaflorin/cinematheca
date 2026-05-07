@@ -29,8 +29,8 @@ for (const entry of readdirSync(docsDir)) {
 
 const info = {
   version: packageJson.version,
-  commit: "live-main",
-  fullCommit: "live-main",
+  commit: packageJson.cinematheca.releaseCommit,
+  fullCommit: packageJson.cinematheca.releaseCommit,
   branch: "main",
   builtAt: "deterministic-pages-build",
   repositoryUrl: "https://github.com/baditaflorin/cinematheca",

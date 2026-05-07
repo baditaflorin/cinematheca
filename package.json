@@ -10,6 +10,9 @@
     "url": "https://github.com/baditaflorin/cinematheca.git"
   },
   "homepage": "https://baditaflorin.github.io/cinematheca/",
+  "cinematheca": {
+    "releaseCommit": "1b86710dade9"
+  },
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "prebuild": "node scripts/write-build-info.mjs",
