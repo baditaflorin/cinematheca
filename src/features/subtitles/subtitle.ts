@@ -1,3 +1,5 @@
+import { isPhrasebookSupported, translateWithPhrasebook } from "./phrasebook";
+
 export type SubtitleLanguage = {
   code: string;
   label: string;
@@ -123,13 +125,36 @@ export function createSubtitleFiles(params: {
   const sourceSegments = segmentTranscript(params.transcript, params.durationSeconds);
 
   return params.languages.flatMap((language) => {
+    // Non-English subtitles used to be the English text with a fake
+    // "[French review]" prefix - i.e. not translated at all. Run the
+    // segments through an offline phrasebook for high-frequency vocabulary
+    // and label drafts honestly when the match rate is low so the editor
+    // knows they still need a real translation pass.
     const localizedSegments =
       language.code === "en"
         ? sourceSegments
-        : sourceSegments.map((segment) => ({
-            ...segment,
-            text: `[${language.label} review] ${segment.text}`
-          }));
+        : sourceSegments.map((segment) => {
+            const code = language.code;
+            const phrasebookCode = isPhrasebookSupported(code) ? code : null;
+            if (!phrasebookCode) {
+              return {
+                ...segment,
+                text: `[Draft ${language.label.toUpperCase()} · needs translation] ${segment.text}`
+              };
+            }
+            const { text: translated, matchedFraction } = translateWithPhrasebook(
+              segment.text,
+              phrasebookCode
+            );
+            const banner =
+              matchedFraction >= 0.6
+                ? `[Draft ${language.label}]`
+                : `[Draft ${language.label} · partial · needs review]`;
+            return {
+              ...segment,
+              text: `${banner} ${translated}`
+            };
+          });
 
     return [
       {
